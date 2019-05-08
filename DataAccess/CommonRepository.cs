@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -50,6 +51,16 @@ namespace DataAccess
             }
 
             return numberToReturn;
+        }
+
+        protected void BulkInsert(DataTable dataTable)
+        {
+            using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conString))
+            {
+                bulkCopy.BulkCopyTimeout = 600;
+                bulkCopy.DestinationTableName = dataTable.TableName;
+                bulkCopy.WriteToServer(dataTable);
+            }
         }
     }
 }
