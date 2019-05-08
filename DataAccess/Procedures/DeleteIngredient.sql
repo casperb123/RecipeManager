@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE DeleteIngredent
+@Id INTEGER
+AS
+BEGIN
+DELETE FROM Ingredients WHERE Id = @Id
+SET NOCOUNT ON
+END

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Entities
@@ -19,6 +20,7 @@ namespace Entities
             set { unit = value; }
         }
 
+        [Required]
         public IngredientType Type
         {
             get { return type; }
@@ -31,6 +33,7 @@ namespace Entities
             set { amount = value; }
         }
 
+        [Required]
         public string Name
         {
             get { return name; }
@@ -43,7 +46,7 @@ namespace Entities
             set { recipeId = value; }
         }
 
-        public int It
+        public int Id
         {
             get { return id; }
             set { id = value; }

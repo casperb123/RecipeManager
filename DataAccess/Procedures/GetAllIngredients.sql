@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE GetAllIngredients
+AS
+BEGIN
+SELECT * FROM Ingredients
+SET NOCOUNT ON
+END
