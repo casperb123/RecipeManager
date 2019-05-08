@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeManager", "RecipeManager\RecipeManager.csproj", "{7704987C-F16B-4F1F-82A7-7FC9E7F85951}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{D16CF397-BE4B-47DA-AC10-BCB197A2B26F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{C16D50D2-75F3-4652-B0FC-7DF9434E7E82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7704987C-F16B-4F1F-82A7-7FC9E7F85951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7704987C-F16B-4F1F-82A7-7FC9E7F85951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7704987C-F16B-4F1F-82A7-7FC9E7F85951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7704987C-F16B-4F1F-82A7-7FC9E7F85951}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D16CF397-BE4B-47DA-AC10-BCB197A2B26F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D16CF397-BE4B-47DA-AC10-BCB197A2B26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D16CF397-BE4B-47DA-AC10-BCB197A2B26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D16CF397-BE4B-47DA-AC10-BCB197A2B26F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C16D50D2-75F3-4652-B0FC-7DF9434E7E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16D50D2-75F3-4652-B0FC-7DF9434E7E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16D50D2-75F3-4652-B0FC-7DF9434E7E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16D50D2-75F3-4652-B0FC-7DF9434E7E82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8AEF2217-B977-493A-80C7-ED0B5BF95627}
+	EndGlobalSection
+EndGlobal
