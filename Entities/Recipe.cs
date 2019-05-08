@@ -12,7 +12,7 @@ namespace Entities
         private int id;
         private List<Ingredient> ingredients;
 
-        public List<Ingredient> Ingredient
+        public List<Ingredient> Ingredients
         {
             get { return ingredients; }
             set { ingredients = value; }
