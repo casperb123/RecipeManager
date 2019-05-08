@@ -98,5 +98,30 @@ namespace DataAccess
 
             return ExecuteNonQuery(sql);
         }
+
+        public List<Ingredient> GetIngredientsInRecipe(int id)
+        {
+            string sql = $"EXEC GetIngredientsInRecipe {id};";
+
+            List<Ingredient> ingredients = new List<Ingredient>();
+            DataTable dataTable = ExecuteQuery(sql);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                Ingredient ingredient = new Ingredient()
+                {
+                    Id = (int)row["Id"],
+                    RecipeId = (int)row["RecipeId"],
+                    Name = (string)row["Name"],
+                    Amount = (int)row["Amount"],
+                    Type = (IngredientType)(int)row["Type"],
+                    Unit = (Unit)(int)row["Unit"]
+                };
+
+                ingredients.Add(ingredient);
+            }
+
+            return ingredients;
+        }
     }
 }

@@ -1,17 +1,20 @@
 ﻿@page
-@model IndexModel
+@model RecipeManager.Pages.Recipes.IndexModel
 @using Entities
 @{
-    ViewData["Title"] = "Recipe Manager";
+    ViewData["Title"] = "Recipes";
 }
 
-<h1>Recipe Manager</h1>
+<h1>Recipes</h1>
+
+<a asp-page="./Create">Create</a>
 
 <table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Ingredients</th>
             <th></th>
         </tr>
     </thead>
@@ -26,7 +29,11 @@
                     @Html.DisplayFor(modelItem => recipe.Description)
                 </td>
                 <td>
-                    <a asp-page="/Ingredients/Index" asp-route-recipeId="@recipe.Id">Ingredients</a>
+                    @Html.DisplayFor(modelItem => recipe.NumberOfIngredients)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@recipe.Id">Edit</a> |
+                    <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@recipe.Id">Delete</a>
                 </td>
             </tr>
         }

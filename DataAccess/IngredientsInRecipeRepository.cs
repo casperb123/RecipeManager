@@ -8,16 +8,16 @@ namespace DataAccess
 {
     public class IngredientsInRecipeRepository : CommonRepository
     {
-        public void AddNewIngredientsInRecipe(List<Ingredient> ingredients, int recipeId)
+        public void AddNewIngredientsInRecipe(List<int> ids, int recipeId)
         {
             DataTable dataTable = new DataTable("IngredientsInRecipe");
 
             dataTable.Columns.Add(new DataColumn("IngredientId", typeof(int)));
             dataTable.Columns.Add(new DataColumn("RecipeId", typeof(int)));
 
-            foreach (Ingredient ingredient in ingredients)
+            foreach (int id in ids)
             {
-                dataTable.Rows.Add(ingredient.Id, recipeId);
+                dataTable.Rows.Add(id, recipeId);
             }
 
             BulkInsert(dataTable);

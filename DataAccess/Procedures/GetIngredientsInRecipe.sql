@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE GetAllIngredientsFull
+﻿CREATE PROCEDURE GetIngredientsInRecipe
+@Id INTEGER
 AS
 BEGIN
 SELECT
@@ -10,5 +11,6 @@ SELECT
 	IngredientsInRecipe.Unit
 FROM IngredientsInRecipe
 INNER JOIN Ingredients ON IngredientsInRecipe.IngredientId = Ingredients.Id
+WHERE RecipeId = @Id
 SET NOCOUNT ON
 END

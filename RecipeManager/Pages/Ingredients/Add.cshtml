@@ -1,0 +1,18 @@
+﻿@page
+@model RecipeManager.Pages.Ingredients.AddModel
+@{
+    ViewData["Title"] = "Add Ingredient to Recipe";
+}
+
+<h1>@Model.Recipe.Name - Add Ingredients</h1>
+
+<form method="post">
+    <div class="form-group col-md-5">
+        <label asp-for="IngredientId">Ingredients</label>
+        <select asp-for="IngredientId" asp-items="@(new SelectList(Model.IngredientsNotInRecipe, "Id", "Name"))" multiple></select>
+        <span class="alert-warning" asp-validation-for="IngredientId"></span><br />
+
+        <br />
+        <input class="btn btn-primary" type="submit" value="Add" />
+    </div>
+</form>

@@ -1,0 +1,71 @@
+﻿@page
+@model RecipeManager.Pages.Ingredients.IndexModel
+@using Entities
+@{
+    ViewData["Title"] = "Ingredients";
+}
+
+@if (Model.RecipeId == 0)
+{
+    <h1>Ingredients</h1>
+
+    <a asp-page="./CreateAdd">Create/Add</a>
+}
+else
+{
+    <h1>@Model.Recipe.Name - Ingredients</h1>
+
+    <a asp-page="./CreateAdd" asp-route-id="@Model.RecipeId">Create/Add</a>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            @if (Model.RecipeId != 0)
+            {
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Unit</th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Ingredient ingredient in Model.Ingredients)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => ingredient.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => ingredient.Type)
+                </td>
+                @if (Model.RecipeId == 0)
+                {
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@ingredient.Id">Edit</a> |
+                        <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@ingredient.Id">Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => ingredient.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => ingredient.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => ingredient.Unit)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@ingredient.Id">Edit</a> |
+                        <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@ingredient.Id">Remove</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

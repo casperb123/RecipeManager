@@ -1,0 +1,44 @@
+﻿@page
+@model RecipeManager.Pages.Ingredients.CreateModel
+@using Entities
+@{
+    ViewData["Title"] = "Create/Add Ingredients";
+}
+
+@if (Model.RecipeId == 0)
+{
+    <h1>Create/Add Ingredients</h1>
+}
+else
+{
+    <h1>@Model.Recipe.Name - Create/Add Ingredients</h1>
+}
+
+<form method="post">
+    <div class="form-group col-md-5">
+        <label asp-for="Ingredient.Name">Name</label>
+        <input class="form-control" asp-for="Ingredient.Name" />
+        <span class="alert-warning" asp-validation-for="Ingredient.Name"></span>
+
+        <label asp-for="Ingredient.Type">Type</label>
+        <select class="form-control" asp-for="Ingredient.Type" asp-items="Html.GetEnumSelectList<IngredientType>()"></select><br />
+        <span class="alert-warning" asp-validation-for="Ingredient.Type"></span><br />
+
+        <br />
+        <input class="btn btn-primary" type="submit" value="Create" />
+    </div>
+</form>
+
+@if (Model.RecipeId != 0)
+{
+    <form method="post">
+        <div class="form-group col-md-5">
+            <label asp-for="IngredientId">Ingredients</label>
+            <select asp-for="IngredientId" asp-items="@(new SelectList(Model.IngredientsNotInRecipe, "Id", "Name"))" multiple></select>
+            <span class="alert-warning" asp-validation-for="IngredientId"></span><br />
+
+            <br />
+            <input class="btn btn-primary" type="submit" value="Add" />
+        </div>
+    </form>
+}

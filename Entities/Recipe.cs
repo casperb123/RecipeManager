@@ -38,5 +38,12 @@ namespace Entities
             set { name = value; }
         }
 
+        public int NumberOfIngredients
+        {
+            get
+            {
+                return Ingredients.Count;
+            }
+        }
     }
 }
