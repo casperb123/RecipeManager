@@ -14,7 +14,7 @@
         <span class="alert-warning" asp-validation-for="IngredientId"></span><br />
 
         <label asp-for="Unit">Unit</label><br />
-        <select class="form-control" asp-for="Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select><br />
+        <select class="form-control" asp-for="Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select>
         <span class="alert-warning" asp-validation-for="Unit"></span><br />
 
         <label asp-for="Amount">Amount</label><br />
@@ -22,6 +22,7 @@
         <span class="alert-warning" asp-validation-for="Amount"></span><br />
 
         <br />
-        <input class="btn btn-primary" type="submit" value="Next" />
+        <input class="btn btn-primary" type="submit" value="Add" />
+        <a class="btn btn-secondary" asp-page="/Recipes/Index">Cancel</a>
     </div>
 </form>

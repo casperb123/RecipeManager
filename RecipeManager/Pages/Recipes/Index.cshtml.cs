@@ -23,5 +23,12 @@ namespace RecipeManager.Pages.Recipes
         {
             Recipes = recipeRepository.GetAllRecipesWithIngredients();
         }
+
+        public IActionResult OnGetDelete(int id)
+        {
+            recipeRepository.DeleteRecipe(id);
+
+            return Redirect("/Recipes/Index");
+        }
     }
 }

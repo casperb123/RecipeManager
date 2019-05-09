@@ -52,6 +52,10 @@ namespace RecipeManager.Pages.Ingredients
         
         public IActionResult OnPost()
         {
+            //Recipe = recipeRepository.GetRecipe(RecipeId);
+            Recipe = new Recipe();
+            IngredientsNotInRecipe = new List<Ingredient>();
+
             if (ModelState.IsValid)
             {
                 //List<string> idsTxt = Request.Form["IngredientId"].ToList();
@@ -74,7 +78,7 @@ namespace RecipeManager.Pages.Ingredients
 
                 //ingredientsInRecipeRepository.AddNewIngredientsInRecipe(ids, RecipeId);
 
-                return RedirectToPage("./Index", new { recipeId = RecipeId });
+                return Redirect("/Recipes/Index");
             }
 
             return Page();

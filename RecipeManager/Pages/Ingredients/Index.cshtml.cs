@@ -15,6 +15,7 @@ namespace RecipeManager.Pages.Ingredients
         public int RecipeId { get; set; }
         public Recipe Recipe { get; set; }
         public List<Ingredient> Ingredients { get; set; }
+        public List<Ingredient> IngredientsInRecipe { get; set; }
         [BindProperty]
         public Ingredient Ingredient { get; set; }
         private IngredientRepository ingredientRepository;
@@ -37,13 +38,14 @@ namespace RecipeManager.Pages.Ingredients
             else
             {
                 Recipe = recipeRepository.GetRecipe(RecipeId);
-                Ingredients = ingredientRepository.GetAllIngredientsFull();
+                List<Ingredient> ingredients = ingredientRepository.GetAllIngredientsFull();
+                Ingredients = new List<Ingredient>();
 
-                foreach (Ingredient ingredient in Ingredients)
+                foreach (Ingredient ingredient in ingredients)
                 {
-                    if (ingredient.RecipeId != RecipeId)
+                    if (ingredient.RecipeId == RecipeId)
                     {
-                        Ingredients.Remove(ingredient);
+                        Ingredients.Add(ingredient);
                     }
                 }
             }
@@ -53,14 +55,14 @@ namespace RecipeManager.Pages.Ingredients
         {
             ingredientRepository.DeleteIngredient(id);
 
-            return Redirect("./Index");
+            return Redirect("/Ingredients/Index");
         }
 
         public IActionResult OnGetRemove(int id)
         {
             ingredientsInRecipeRepository.RemoveIngredientFromRecipe(id, RecipeId);
 
-            return RedirectToPage("./Index", new { recipeId = RecipeId });
+            return RedirectToPage("/Ingredients/Index", new { recipeId = RecipeId });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE DeleteIngredent
+﻿CREATE PROCEDURE DeleteIngredient
 @Id INTEGER
 AS
 BEGIN

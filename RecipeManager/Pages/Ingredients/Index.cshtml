@@ -56,7 +56,7 @@ else
                     </td>
                     <td>
                         <a asp-page="./Edit" asp-route-id="@ingredient.Id">Edit</a> |
-                        <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@ingredient.Id">Remove</a>
+                        <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@ingredient.Id" asp-route-recipeId="@Model.RecipeId">Remove</a>
                     </td>
                 }
             </tr>
