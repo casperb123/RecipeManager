@@ -10,7 +10,7 @@ namespace Entities
         private string name;
         private string description;
         private int id;
-        private List<Ingredient> ingredients;
+        private List<Ingredient> ingredients = new List<Ingredient>();
 
         public List<Ingredient> Ingredients
         {
@@ -42,6 +42,11 @@ namespace Entities
         {
             get
             {
+                if (Ingredients is null)
+                {
+                    return 0;
+                }
+
                 return Ingredients.Count;
             }
         }

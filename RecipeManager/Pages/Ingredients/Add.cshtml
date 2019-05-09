@@ -1,18 +1,27 @@
 ﻿@page
 @model RecipeManager.Pages.Ingredients.AddModel
+@using Entities
 @{
-    ViewData["Title"] = "Add Ingredient to Recipe";
+    ViewData["Title"] = "Add Ingredients to Recipe";
 }
 
 <h1>@Model.Recipe.Name - Add Ingredients</h1>
 
 <form method="post">
     <div class="form-group col-md-5">
-        <label asp-for="IngredientId">Ingredients</label>
-        <select asp-for="IngredientId" asp-items="@(new SelectList(Model.IngredientsNotInRecipe, "Id", "Name"))" multiple></select>
+        <label asp-for="IngredientId">Choose ingredient</label><br />
+        <select class="form-control" asp-for="IngredientId" asp-items="@(new SelectList(Model.IngredientsNotInRecipe, "Id", "Name"))"></select>
         <span class="alert-warning" asp-validation-for="IngredientId"></span><br />
 
+        <label asp-for="Unit">Unit</label><br />
+        <select class="form-control" asp-for="Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select><br />
+        <span class="alert-warning" asp-validation-for="Unit"></span><br />
+
+        <label asp-for="Amount">Amount</label><br />
+        <input class="form-control" asp-for="Amount" />
+        <span class="alert-warning" asp-validation-for="Amount"></span><br />
+
         <br />
-        <input class="btn btn-primary" type="submit" value="Add" />
+        <input class="btn btn-primary" type="submit" value="Next" />
     </div>
 </form>

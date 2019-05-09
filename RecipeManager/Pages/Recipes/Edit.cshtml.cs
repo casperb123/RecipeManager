@@ -9,27 +9,29 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RecipeManager.Pages.Recipes
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public int RecipeId { get; set; }
         [BindProperty]
         public Recipe Recipe { get; set; }
         private RecipeRepository recipeRepository;
 
-        public CreateModel()
+        public EditModel()
         {
             recipeRepository = new RecipeRepository();
         }
 
         public void OnGet()
         {
-
+            Recipe = recipeRepository.GetRecipe(RecipeId);
         }
 
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                recipeRepository.NewRecipe(Recipe);
+                recipeRepository.UpdateRecipe(Recipe);
 
                 return Redirect("./Index");
             }

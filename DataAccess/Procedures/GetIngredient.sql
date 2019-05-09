@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE GetIngredient
+﻿CREATE PROC GetIngredient
 @Id INTEGER
 AS
 BEGIN
-SELECT * FROM Ingredients WHERE Id = @Id
+SELECT * FROM Ingredients WHERE Ingredients.Id = @Id
 SET NOCOUNT ON
 END

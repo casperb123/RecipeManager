@@ -1,30 +1,25 @@
 ﻿@page
-@model RecipeManager.Pages.Ingredients.CreateModel
+@model RecipeManager.Pages.Ingredients.EditModel
 @using Entities
 @{
-    ViewData["Title"] = "Create/Add Ingredients";
+    ViewData["Title"] = "Edit Ingredient";
 }
 
-@if (Model.RecipeId == 0)
-{
-    <h1>Create/Add Ingredients</h1>
-}
-else
-{
-    <h1>@Model.Recipe.Name - Create/Add Ingredients</h1>
-}
+<h1>Edit @Model.Ingredient.Name</h1>
 
 <form method="post">
     <div class="form-group col-md-5">
+        <input type="hidden" asp-for="Ingredient.Id" />
+
         <label asp-for="Ingredient.Name">Name</label>
         <input class="form-control" asp-for="Ingredient.Name" />
-        <span class="alert-warning" asp-validation-for="Ingredient.Name"></span>
+        <span class="alert-warning" asp-validation-for="Ingredient.Name"></span><br />
 
         <label asp-for="Ingredient.Type">Type</label>
         <select class="form-control" asp-for="Ingredient.Type" asp-items="Html.GetEnumSelectList<IngredientType>()"></select><br />
         <span class="alert-warning" asp-validation-for="Ingredient.Type"></span><br />
 
         <br />
-        <input class="btn btn-primary" type="submit" value="Create" />
+        <input class="btn btn-primary" type="submit" value="Edit" />
     </div>
 </form>

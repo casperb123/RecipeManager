@@ -8,15 +8,13 @@
 @if (Model.RecipeId == 0)
 {
     <h1>Ingredients</h1>
-
-    <a asp-page="./CreateAdd">Create/Add</a>
 }
 else
 {
     <h1>@Model.Recipe.Name - Ingredients</h1>
-
-    <a asp-page="./CreateAdd" asp-route-id="@Model.RecipeId">Create/Add</a>
 }
+
+<a asp-page="./Create">Create</a>
 
 <table class="table">
     <thead>
@@ -25,9 +23,8 @@ else
             <th>Type</th>
             @if (Model.RecipeId != 0)
             {
-                <th>Amount</th>
-                <th>Type</th>
                 <th>Unit</th>
+                <th>Amount</th>
             }
             <th></th>
         </tr>
@@ -52,13 +49,10 @@ else
                 else
                 {
                     <td>
-                        @Html.DisplayFor(modelItem => ingredient.Amount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => ingredient.Type)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => ingredient.Unit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => ingredient.Amount)
                     </td>
                     <td>
                         <a asp-page="./Edit" asp-route-id="@ingredient.Id">Edit</a> |

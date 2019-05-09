@@ -18,17 +18,31 @@ namespace DataAccess
 
             foreach (DataRow row in dataTable.Rows)
             {
-                Ingredient ingredient = new Ingredient()
+                if (int.TryParse(row["Amount"].ToString(), out int amount))
                 {
-                    Id = (int)row["Id"],
-                    RecipeId = (int)row["RecipeId"],
-                    Name = (string)row["Name"],
-                    Amount = (int)row["Amount"],
-                    Type = (IngredientType)(int)row["Type"],
-                    Unit = (Unit)(int)row["Unit"]
-                };
+                    Ingredient ingredient = new Ingredient()
+                    {
+                        Id = (int)row["Id"],
+                        RecipeId = (int)row["RecipeId"],
+                        Name = (string)row["Name"],
+                        Amount = (int)row["Amount"],
+                        Type = (IngredientType)(int)row["Type"],
+                        Unit = (Unit)(int)row["Unit"]
+                    };
 
-                ingredients.Add(ingredient);
+                    ingredients.Add(ingredient);
+                }
+                else
+                {
+                    Ingredient ingredient = new Ingredient()
+                    {
+                        Id = (int)row["Id"],
+                        Name = (string)row["Name"],
+                        Type = (IngredientType)(int)row["Type"]
+                    };
+
+                    ingredients.Add(ingredient);
+                }
             }
 
             return ingredients;
@@ -87,14 +101,14 @@ namespace DataAccess
 
         public int NewIngredient(Ingredient ingredient)
         {
-            string sql = $"EXEC NewIngredient {ingredient.Name}, {ingredient.Type};";
+            string sql = $"EXEC NewIngredient {ingredient.Name}, {(int)ingredient.Type};";
 
             return ExecuteNonQueryScalar(sql);
         }
 
         public int UpdateIngredient(Ingredient ingredient)
         {
-            string sql = $"EXEC UpdateIngredient {ingredient.Id}, '{ingredient.Name}', {ingredient.Type}";
+            string sql = $"EXEC UpdateIngredient {ingredient.Id}, '{ingredient.Name}', {(int)ingredient.Type}";
 
             return ExecuteNonQuery(sql);
         }
@@ -108,17 +122,31 @@ namespace DataAccess
 
             foreach (DataRow row in dataTable.Rows)
             {
-                Ingredient ingredient = new Ingredient()
+                if (int.TryParse(row["Amount"].ToString(), out int amount))
                 {
-                    Id = (int)row["Id"],
-                    RecipeId = (int)row["RecipeId"],
-                    Name = (string)row["Name"],
-                    Amount = (int)row["Amount"],
-                    Type = (IngredientType)(int)row["Type"],
-                    Unit = (Unit)(int)row["Unit"]
-                };
+                    Ingredient ingredient = new Ingredient()
+                    {
+                        Id = (int)row["Id"],
+                        RecipeId = (int)row["RecipeId"],
+                        Name = (string)row["Name"],
+                        Amount = (int)row["Amount"],
+                        Type = (IngredientType)(int)row["Type"],
+                        Unit = (Unit)(int)row["Unit"]
+                    };
 
-                ingredients.Add(ingredient);
+                    ingredients.Add(ingredient);
+                }
+                else
+                {
+                    Ingredient ingredient = new Ingredient()
+                    {
+                        Id = (int)row["Id"],
+                        Name = (string)row["Name"],
+                        Type = (IngredientType)(int)row["Type"]
+                    };
+
+                    ingredients.Add(ingredient);
+                }
             }
 
             return ingredients;

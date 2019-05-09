@@ -7,29 +7,31 @@ using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RecipeManager.Pages.Recipes
+namespace RecipeManager.Pages.Ingredients
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public int Id { get; set; }
         [BindProperty]
-        public Recipe Recipe { get; set; }
-        private RecipeRepository recipeRepository;
+        public Ingredient Ingredient { get; set; }
+        private IngredientRepository ingredientRepository;
 
-        public CreateModel()
+        public EditModel()
         {
-            recipeRepository = new RecipeRepository();
+            ingredientRepository = new IngredientRepository();
         }
 
         public void OnGet()
         {
-
+            Ingredient = ingredientRepository.GetIngredient(Id);
         }
 
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                recipeRepository.NewRecipe(Recipe);
+                ingredientRepository.UpdateIngredient(Ingredient);
 
                 return Redirect("./Index");
             }

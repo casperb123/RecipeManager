@@ -9,6 +9,6 @@ SELECT
 	IngredientsInRecipe.Amount,
 	IngredientsInRecipe.Unit
 FROM IngredientsInRecipe
-INNER JOIN Ingredients ON IngredientsInRecipe.IngredientId = Ingredients.Id
+LEFT JOIN Ingredients ON IngredientsInRecipe.IngredientId = Ingredients.Id
 SET NOCOUNT ON
 END

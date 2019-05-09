@@ -17,9 +17,6 @@ namespace RecipeManager.Pages.Ingredients
         public Recipe Recipe { get; set; }
         [BindProperty]
         public Ingredient Ingredient { get; set; }
-        [BindProperty]
-        [Required]
-        public int IngredientId { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public List<Ingredient> IngredientsInRecipe { get; set; }
         public List<Ingredient> IngredientsNotInRecipe { get; set; }

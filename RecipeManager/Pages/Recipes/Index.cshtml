@@ -32,7 +32,9 @@
                     @Html.DisplayFor(modelItem => recipe.NumberOfIngredients)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@recipe.Id">Edit</a> |
+                    <a asp-page="/Ingredients/Index" asp-route-recipeId="@recipe.Id">Ingredients</a> |
+                    <a asp-page="/Ingredients/Add" asp-route-recipeId="@recipe.Id">Add Ingredient</a> |
+                    <a asp-page="./Edit" asp-route-recipeId="@recipe.Id">Edit</a> |
                     <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@recipe.Id">Delete</a>
                 </td>
             </tr>

@@ -16,8 +16,17 @@ namespace RecipeManager.Pages.Ingredients
         public int RecipeId { get; set; }
         public Recipe Recipe { get; set; }
         [BindProperty]
-        [Required(ErrorMessage = "You need to choose one or more ingredients")]
+        [Required(ErrorMessage = "You need to choose a ingredient")]
         public int IngredientId { get; set; }
+        [BindProperty]
+        [Required(ErrorMessage = "You need to write an amount")]
+        public int Amount { get; set; }
+        [BindProperty]
+        [Required(ErrorMessage = "You need to pick a unit type")]
+        public Unit Unit { get; set; }
+        //[BindProperty]
+        //[Required(ErrorMessage = "You need to choose one or more ingredients")]
+        //public IEnumerable<string> IngredientId { get; set; }
         public List<Ingredient> IngredientsInRecipe { get; set; }
         public List<Ingredient> IngredientsNotInRecipe { get; set; }
         private IngredientRepository ingredientRepository;
@@ -34,8 +43,8 @@ namespace RecipeManager.Pages.Ingredients
         public void OnGet()
         {
             Recipe = recipeRepository.GetRecipe(RecipeId);
+            IngredientsNotInRecipe = ingredientRepository.GetAllIngredients();
             IngredientsInRecipe = ingredientRepository.GetIngredientsInRecipe(RecipeId);
-            IngredientsNotInRecipe = ingredientRepository.GetAllIngredientsFull();
 
             var idsInRecipe = IngredientsInRecipe.Select(x => x.Id);
             IngredientsNotInRecipe.RemoveAll(x => idsInRecipe.Contains(x.Id));
@@ -45,17 +54,27 @@ namespace RecipeManager.Pages.Ingredients
         {
             if (ModelState.IsValid)
             {
-                List<string> idsTxt = Request.Form["Id"].ToList();
-                List<int> ids = new List<int>();
+                //List<string> idsTxt = Request.Form["IngredientId"].ToList();
+                //IngredientId = IngredientId.ToList();
 
-                foreach (string idTxt in idsTxt)
-                {
-                    ids.Add(int.Parse(idTxt));
-                }
+                //List<int> Ids = new List<int>();
 
-                ingredientsInRecipeRepository.AddNewIngredientsInRecipe(ids, RecipeId);
+                //foreach (string idTxt in IngredientId)
+                //{
+                //    Ids.Add(int.Parse(idTxt));
+                //}
 
-                return Redirect("./Index");
+                Ingredient ingredient = ingredientRepository.GetIngredient(IngredientId);
+
+                ingredient.RecipeId = RecipeId;
+                ingredient.Amount = Amount;
+                ingredient.Unit = Unit;
+
+                ingredientsInRecipeRepository.AddNewIngredientInRecipe(ingredient);
+
+                //ingredientsInRecipeRepository.AddNewIngredientsInRecipe(ids, RecipeId);
+
+                return RedirectToPage("./Index", new { recipeId = RecipeId });
             }
 
             return Page();

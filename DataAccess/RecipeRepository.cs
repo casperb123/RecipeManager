@@ -82,7 +82,7 @@ namespace DataAccess
 
         public int NewRecipe(Recipe recipe)
         {
-            string sql = $"EXEC NewRecipe {recipe.Id}, '{recipe.Name}', '{recipe.Description}';";
+            string sql = $"EXEC NewRecipe '{recipe.Name}', '{recipe.Description}';";
 
             return ExecuteNonQueryScalar(sql);
         }

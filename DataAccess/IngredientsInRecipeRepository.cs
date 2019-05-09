@@ -23,6 +23,13 @@ namespace DataAccess
             BulkInsert(dataTable);
         }
 
+        public int AddNewIngredientInRecipe(Ingredient ingredient)
+        {
+            string sql = $"EXEC AddNewIngredientInRecipe {ingredient.Id}, {ingredient.RecipeId}, {ingredient.Amount}, {(int)ingredient.Unit};";
+
+            return ExecuteNonQuery(sql);
+        }
+
         public int RemoveIngredientFromRecipe(int ingredientId, int recipeId)
         {
             string sql = $"EXEC RemoveIngredientFromRecipe {ingredientId}, {recipeId};";
