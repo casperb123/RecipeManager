@@ -12,23 +12,23 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
-            <th></th>
+            <th>Ingredients</th>
         </tr>
     </thead>
     <tbody>
         @foreach (Recipe recipe in Model.Recipes)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => recipe.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => recipe.Description)
-                </td>
-                <td>
-                    <a asp-page="/Ingredients/Index" asp-route-recipeId="@recipe.Id">Ingredients</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => recipe.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => recipe.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => recipe.NumberOfIngredients)
+            </td>
+        </tr>
         }
     </tbody>
 </table>

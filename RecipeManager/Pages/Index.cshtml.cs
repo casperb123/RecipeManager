@@ -13,7 +13,7 @@ namespace RecipeManager.Pages
     {
         public List<Recipe> Recipes { get; set; }
         private RecipeRepository recipeRepository;
-
+        
         public IndexModel()
         {
             recipeRepository = new RecipeRepository();
@@ -21,7 +21,7 @@ namespace RecipeManager.Pages
 
         public void OnGet()
         {
-            Recipes = recipeRepository.GetAllRecipes();
+            Recipes = recipeRepository.GetAllRecipesWithIngredients();
         }
     }
 }
