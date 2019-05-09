@@ -11,13 +11,30 @@
     <div class="form-group col-md-5">
         <input type="hidden" asp-for="Ingredient.Id" />
 
-        <label asp-for="Ingredient.Name">Name</label>
-        <input class="form-control" asp-for="Ingredient.Name" />
-        <span class="alert-warning" asp-validation-for="Ingredient.Name"></span><br />
+        @if (Model.Ingredient.Amount > 0)
+        {
+            <input type="hidden" asp-for="Ingredient.RecipeId" />
+            <input type="hidden" asp-for="Ingredient.Name" />
+            <input type="hidden" asp-for="Ingredient.Type" />
 
-        <label asp-for="Ingredient.Type">Type</label>
-        <select class="form-control" asp-for="Ingredient.Type" asp-items="Html.GetEnumSelectList<IngredientType>()"></select><br />
-        <span class="alert-warning" asp-validation-for="Ingredient.Type"></span><br />
+            <label asp-for="Ingredient.Unit">Unit</label>
+            <select class="form-control" asp-for="Ingredient.Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select>
+            <span class="alert-warning" asp-validation-for="Ingredient.Unit"></span><br />
+
+            <label asp-for="Ingredient.Amount">Name</label>
+            <input class="form-control" asp-for="Ingredient.Amount" />
+            <span class="alert-warning" asp-validation-for="Ingredient.Amount"></span><br />
+        }
+        else
+        {
+            <label asp-for="Ingredient.Name">Name</label>
+            <input class="form-control" asp-for="Ingredient.Name" />
+            <span class="alert-warning" asp-validation-for="Ingredient.Name"></span><br />
+
+            <label asp-for="Ingredient.Type">Type</label>
+            <select class="form-control" asp-for="Ingredient.Type" asp-items="Html.GetEnumSelectList<IngredientType>()"></select>
+            <span class="alert-warning" asp-validation-for="Ingredient.Type"></span><br />
+        }
 
         <br />
         <input class="btn btn-primary" type="submit" value="Edit" />

@@ -79,14 +79,31 @@ namespace DataAccess
 
             foreach (DataRow row in dataTable.Rows)
             {
-                Ingredient ingredient = new Ingredient()
+                if (int.TryParse(row["Amount"].ToString(), out int amount))
                 {
-                    Id = (int)row["Id"],
-                    Name = (string)row["Name"],
-                    Type = (IngredientType)(int)row["Type"]
-                };
+                    Ingredient ingredient = new Ingredient()
+                    {
+                        Id = (int)row["Id"],
+                        Name = (string)row["Name"],
+                        Type = (IngredientType)(int)row["Type"],
+                        RecipeId = (int)row["RecipeId"],
+                        Amount = (int)row["Amount"],
+                        Unit = (Unit)(int)row["Unit"]
+                    };
 
-                return ingredient;
+                    return ingredient;
+                }
+                else
+                {
+                    Ingredient ingredient = new Ingredient()
+                    {
+                        Id = (int)row["Id"],
+                        Name = (string)row["Name"],
+                        Type = (IngredientType)(int)row["Type"]
+                    };
+
+                    return ingredient;
+                }
             }
 
             return null;

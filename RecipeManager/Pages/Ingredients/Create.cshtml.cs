@@ -45,16 +45,7 @@ namespace RecipeManager.Pages.Ingredients
             {
                 ingredientRepository.NewIngredient(Ingredient);
 
-                if (RecipeId == 0)
-                {
-                    return Redirect("./Index");
-                }
-
-                List<int> ingredients = new List<int>() { Ingredient.Id };
-
-                ingredientsInRecipeRepository.AddNewIngredientsInRecipe(ingredients, RecipeId);
-
-                return RedirectToPage("./Index", new { recipeId = RecipeId });
+                return Redirect("./Index");
             }
 
             return Page();

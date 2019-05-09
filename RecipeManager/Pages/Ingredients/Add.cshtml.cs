@@ -20,13 +20,11 @@ namespace RecipeManager.Pages.Ingredients
         public int IngredientId { get; set; }
         [BindProperty]
         [Required(ErrorMessage = "You need to write an amount")]
+        [Range(1, int.MaxValue, ErrorMessage = "The amount can't be less than 1")]
         public int Amount { get; set; }
         [BindProperty]
         [Required(ErrorMessage = "You need to pick a unit type")]
         public Unit Unit { get; set; }
-        //[BindProperty]
-        //[Required(ErrorMessage = "You need to choose one or more ingredients")]
-        //public IEnumerable<string> IngredientId { get; set; }
         public List<Ingredient> IngredientsInRecipe { get; set; }
         public List<Ingredient> IngredientsNotInRecipe { get; set; }
         private IngredientRepository ingredientRepository;
@@ -52,21 +50,10 @@ namespace RecipeManager.Pages.Ingredients
         
         public IActionResult OnPost()
         {
-            //Recipe = recipeRepository.GetRecipe(RecipeId);
-            Recipe = new Recipe();
-            IngredientsNotInRecipe = new List<Ingredient>();
-
             if (ModelState.IsValid)
             {
-                //List<string> idsTxt = Request.Form["IngredientId"].ToList();
-                //IngredientId = IngredientId.ToList();
-
-                //List<int> Ids = new List<int>();
-
-                //foreach (string idTxt in IngredientId)
-                //{
-                //    Ids.Add(int.Parse(idTxt));
-                //}
+                Recipe = new Recipe();
+                IngredientsNotInRecipe = new List<Ingredient>();
 
                 Ingredient ingredient = ingredientRepository.GetIngredient(IngredientId);
 
@@ -76,10 +63,15 @@ namespace RecipeManager.Pages.Ingredients
 
                 ingredientsInRecipeRepository.AddNewIngredientInRecipe(ingredient);
 
-                //ingredientsInRecipeRepository.AddNewIngredientsInRecipe(ids, RecipeId);
-
                 return Redirect("/Recipes/Index");
             }
+
+            Recipe = recipeRepository.GetRecipe(RecipeId);
+            IngredientsNotInRecipe = ingredientRepository.GetAllIngredients();
+            IngredientsInRecipe = ingredientRepository.GetIngredientsInRecipe(RecipeId);
+
+            var idsInRecipe = IngredientsInRecipe.Select(x => x.Id);
+            IngredientsNotInRecipe.RemoveAll(x => idsInRecipe.Contains(x.Id));
 
             return Page();
         }

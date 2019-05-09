@@ -48,6 +48,7 @@ namespace RecipeManager
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
             app.UseCookiePolicy();

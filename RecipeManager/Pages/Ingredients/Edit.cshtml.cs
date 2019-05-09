@@ -13,27 +13,56 @@ namespace RecipeManager.Pages.Ingredients
     {
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int ExistingId { get; set; }
         [BindProperty]
         public Ingredient Ingredient { get; set; }
+        public Unit Unit { get; set; }
+        public int Amount { get; set; }
         private IngredientRepository ingredientRepository;
+        private IngredientsInRecipeRepository ingredientsInRecipeRepository;
 
         public EditModel()
         {
             ingredientRepository = new IngredientRepository();
+            ingredientsInRecipeRepository = new IngredientsInRecipeRepository();
         }
 
         public void OnGet()
         {
-            Ingredient = ingredientRepository.GetIngredient(Id);
+            if (ExistingId > 0)
+            {
+                Ingredient = ingredientRepository.GetIngredient(ExistingId);
+            }
+            else
+            {
+                Ingredient = ingredientRepository.GetIngredient(Id);
+            }
         }
 
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
+                if (Ingredient.Amount > 0)
+                {
+                    ingredientsInRecipeRepository.UpdateIngredientInRecipe(Ingredient);
+
+                    return RedirectToPage("./Index", new { recipeId = ExistingId });
+                }
+
                 ingredientRepository.UpdateIngredient(Ingredient);
 
                 return Redirect("./Index");
+            }
+
+            if (ExistingId > 0)
+            {
+                Ingredient = ingredientRepository.GetIngredient(ExistingId);
+            }
+            else
+            {
+                Ingredient = ingredientRepository.GetIngredient(Id);
             }
 
             return Page();
