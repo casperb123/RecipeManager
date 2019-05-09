@@ -27,7 +27,6 @@ namespace Entities
             set { type = value; }
         }
 
-        [Range(1, int.MaxValue, ErrorMessage = "The amount can't be less than 1")]
         public int Amount
         {
             get { return amount; }
