@@ -20,7 +20,7 @@ namespace Entities
             set { unit = value; }
         }
 
-        [Required]
+        [Required(ErrorMessage = "You need to choose a ingredient type")]
         public IngredientType Type
         {
             get { return type; }
@@ -33,7 +33,7 @@ namespace Entities
             set { amount = value; }
         }
 
-        [Required]
+        [Required(ErrorMessage = "The name can't be empty")]
         public string Name
         {
             get { return name; }

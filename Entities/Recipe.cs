@@ -24,14 +24,14 @@ namespace Entities
             set { id = value; }
         }
 
-        [Required]
+        [Required(ErrorMessage = "The description can't be empty")]
         public string Description
         {
             get { return description; }
             set { description = value; }
         }
 
-        [Required]
+        [Required(ErrorMessage = "The name can't be empty")]
         public string Name
         {
             get { return name; }
