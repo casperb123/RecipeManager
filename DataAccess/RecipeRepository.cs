@@ -8,6 +8,10 @@ namespace DataAccess
 {
     public class RecipeRepository : CommonRepository
     {
+        /// <summary>
+        /// Returns a list with all the recipes including ingredients
+        /// </summary>
+        /// <returns>List of recipes</returns>
         public List<Recipe> GetAllRecipesWithIngredients()
         {
             IngredientRepository ingredientRepository = new IngredientRepository();
@@ -29,6 +33,11 @@ namespace DataAccess
             return recipes;
         }
 
+        /// <summary>
+        /// Deletes a recipe with the given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Rows affected</returns>
         public int DeleteRecipe(int id)
         {
             string sql = $"EXEC DeleteRecipe {id};";
@@ -36,6 +45,11 @@ namespace DataAccess
             return ExecuteNonQuery(sql);
         }
 
+        /// <summary>
+        /// Returns a recipe with the given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Recipe</returns>
         public Recipe GetRecipe(int id)
         {
             string sql = $"EXEC GetRecipe {id};";
@@ -57,6 +71,10 @@ namespace DataAccess
             return null;
         }
 
+        /// <summary>
+        /// Returns a list with all the recipes
+        /// </summary>
+        /// <returns>List of recipes</returns>
         public List<Recipe> GetAllRecipes()
         {
             List<Recipe> recipes = new List<Recipe>();
@@ -80,6 +98,11 @@ namespace DataAccess
             return recipes;
         }
 
+        /// <summary>
+        /// Inserts a new recipe
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns>Rows affected</returns>
         public int NewRecipe(Recipe recipe)
         {
             string sql = $"EXEC NewRecipe '{recipe.Name}', '{recipe.Description}';";
@@ -87,6 +110,11 @@ namespace DataAccess
             return ExecuteNonQueryScalar(sql);
         }
 
+        /// <summary>
+        /// Updates the recipe
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns>Rows affected</returns>
         public int UpdateRecipe(Recipe recipe)
         {
             string sql = $"EXEC UpdateRecipe {recipe.Id}, '{recipe.Name}', '{recipe.Description}';";

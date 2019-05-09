@@ -8,6 +8,10 @@ namespace DataAccess
 {
     public class IngredientRepository : CommonRepository
     {
+        /// <summary>
+        /// Returns a list with all the ingredients including the recipe details
+        /// </summary>
+        /// <returns>List of ingredients</returns>
         public List<Ingredient> GetAllIngredientsFull()
         {
             List<Ingredient> ingredients = new List<Ingredient>();
@@ -48,6 +52,10 @@ namespace DataAccess
             return ingredients;
         }
 
+        /// <summary>
+        /// Returns a list with all the ingredients
+        /// </summary>
+        /// <returns>List of ingredients</returns>
         public List<Ingredient> GetAllIngredients()
         {
             List<Ingredient> ingredients = new List<Ingredient>();
@@ -71,6 +79,11 @@ namespace DataAccess
             return ingredients;
         }
 
+        /// <summary>
+        /// Returns a ingredient with the given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Ingredient</returns>
         public Ingredient GetIngredient(int id)
         {
             string sql = $"EXEC GetIngredient {id};";
@@ -92,6 +105,12 @@ namespace DataAccess
             return null;
         }
 
+        /// <summary>
+        /// Returns a ingredient including the recipe details with the given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="recipeId"></param>
+        /// <returns>Ingredient</returns>
         public Ingredient GetIngredientFull(int id, int recipeId)
         {
             string sql = $"EXEC GetIngredientFull {id}, {recipeId};";
@@ -116,6 +135,11 @@ namespace DataAccess
             return null;
         }
 
+        /// <summary>
+        /// Deletes a ingredient with the given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Rows affected</returns>
         public int DeleteIngredient(int id)
         {
             string sql = $"EXEC DeleteIngredient {id};";
@@ -123,6 +147,11 @@ namespace DataAccess
             return ExecuteNonQuery(sql);
         }
 
+        /// <summary>
+        /// Inserts a ingredient
+        /// </summary>
+        /// <param name="ingredient"></param>
+        /// <returns>Rows affected</returns>
         public int NewIngredient(Ingredient ingredient)
         {
             string sql = $"EXEC NewIngredient {ingredient.Name}, {(int)ingredient.Type};";
@@ -130,6 +159,11 @@ namespace DataAccess
             return ExecuteNonQueryScalar(sql);
         }
 
+        /// <summary>
+        /// Updates a ingredient
+        /// </summary>
+        /// <param name="ingredient"></param>
+        /// <returns>Rows affected</returns>
         public int UpdateIngredient(Ingredient ingredient)
         {
             string sql = $"EXEC UpdateIngredient {ingredient.Id}, '{ingredient.Name}', {(int)ingredient.Type}";
@@ -137,6 +171,11 @@ namespace DataAccess
             return ExecuteNonQuery(sql);
         }
 
+        /// <summary>
+        /// Returns a list with all the ingredients in a recipe
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>List of ingredients</returns>
         public List<Ingredient> GetIngredientsInRecipe(int id)
         {
             string sql = $"EXEC GetIngredientsInRecipe {id};";
