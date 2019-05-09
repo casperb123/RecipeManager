@@ -20,11 +20,6 @@ namespace RecipeManager.Pages.Recipes
             recipeRepository = new RecipeRepository();
         }
 
-        public void OnGet()
-        {
-
-        }
-
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
